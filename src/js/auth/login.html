@@ -1,0 +1,12 @@
+<div class="pn-content-centered centered col-md-6 login-modal has-logo-underlay">
+	<h1 class="text-center">Log In</h1>
+	<div class="content-container">
+		<toasts></toasts>
+    <div ng-hide="loading">
+      <login-form></login-form>
+		</div>
+		<div ng-show="loading" class="text-center loading">
+			<img src="/assets/ajax-loader.gif">
+		</div>
+	</div>
+</div>

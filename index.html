@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Partnr</title>
+    <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link href='/css/application.css' rel='stylesheet' type='text/css'>
+    <meta id="api-endpoints" prd="http://api.partnr-up.com" dev="http://dev-api.partnr-up.com" , lcl="">
+</head>
+
+<body ng-app="partnr.core" ng-controller="SharedController">
+    <script src="/js/app.js"></script>
+    <header ng-include="'/shared/header.html'"></header>
+    <!-- APP -->
+    <div class="content container">
+        <div ui-view="content"></div>
+    </div>
+    <!-- END APP -->
+    <footer ng-include="'/chat/chat.html'"></footer>
+    <footer>
+        <span class="version">
+        Copyright © 2016 Partnr LLC •
+        <a target="_blank" id="appVersion" href="https://docs.google.com/document/d/1c22uv8qhnh3_tm-OnOguPjzUyJgazfpStIFXalrJfW4/edit?usp=sharing"></a> •
+        <a target="_blank" href="http://goo.gl/forms/SmjE8XHUVy">Feedback</a> •
+        <a target="_blank" href="https://docs.google.com/document/d/1c22uv8qhnh3_tm-OnOguPjzUyJgazfpStIFXalrJfW4/edit?usp=sharing">Release Notes</a>
+      </span>
+    </footer>
+</body>
+
+</html>

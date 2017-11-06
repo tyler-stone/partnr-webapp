@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title">Select Categories ({{ max - selected.length }} remaining)</h3>
+</div>
+<div class="modal-body">
+	<div class="cat-wrapper">
+		<category-button selected="isSelected(category)" selectable="selected.length < max" ng-repeat="category in $root.categories" category="category"></category-button>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="reset()">Reset</button>
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Ok</button>
+</div>

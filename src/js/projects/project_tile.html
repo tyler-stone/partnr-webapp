@@ -1,0 +1,26 @@
+<div class="content-container no-padding project-tile">
+	<div class="ptile-img-placeholder" pn-bg-img="{{ project.links.cover_photo }}">
+		<div class="ptile-partnrs-wrapper">
+			<div class="ptile-partnrs">
+				<a href ui-sref="user({ id: role.user.id })" ng-show="!!role.user" uib-tooltip="{{ role.user.name }}" class="ptile-img-partnr" ng-repeat="role in project.roles | limitTo:5">
+					<img ng-style="{'background-image': 'url({{role.user.links.avatar}})'}"/>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="ptile-info">
+		<h3>{{ project.title | limitLength:255 }}</h3>
+		<h5>
+			<i ng-if="project.status === 'not_started'" class="fa fa-circle-o"></i>
+			<i ng-if="project.status === 'in_progress'" class="fa fa-arrow-circle-right"></i>
+			<i ng-if="project.status === 'complete'" class="fa fa-check-circle"></i>
+			{{ getProjectStatus(project.status) }}
+		</h5>
+		<p>{{ project.description | limitLength:255 }}</p>
+		<div class="clearfix">
+			<div class="col-xs-12 buttons-right">
+				<button class="btn btn-primary" ng-click="$state.go('project', { project_id: project.id })">check it out</button>
+			</div>
+		</div>
+	</div>
+</div>

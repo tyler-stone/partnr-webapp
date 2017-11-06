@@ -1,0 +1,19 @@
+<div class="content-container with-tabs">
+	<div ng-show="loadComplete">
+		<h2>Applications</h2>
+		<div ng-if="applications.length > 0" class="internal-container" ng-repeat="a in applications track by $index">
+        	<span class="title"><a href ui-sref="user({ id: a.user.id })">{{ a.user.first_name }} {{ a.user.last_name }}</a></span>
+        	<span class="subtitle">For Role: {{ a.role.title }} (<em>{{ a.status }}</em>)</span>
+			<div class="buttons-right" ng-if="a.status === 'pending' && isOwner">
+				<button type="button" class="btn btn-default" ng-click="doAccept(a)">Accept</button>
+				<button type="button" class="btn btn-danger" ng-click="doReject(a)">Reject</button>
+			</div>
+		</div>
+		<div ng-if="applications.length <= 0" class="text-center">
+			<h2 class="opaque-notify-message">There are currently no applications.</h2>
+		</div>
+	</div>
+	<div ng-hide="loadComplete" class="text-center loading">
+		<img src="/assets/ajax-loader.gif">
+	</div>
+</div>

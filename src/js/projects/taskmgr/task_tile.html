@@ -1,0 +1,27 @@
+<div class="content-container no-padding pn-task clearfix {{ task.status }}">
+	<div class="complete-btn-wrapper">
+		<button class="complete-btn {{ task.status }}" ng-class="{'disabled': !$parent.isOwner && !$parent.isMember}" ng-disabled="!$parent.isOwner && !$parent.isMember" ng-click="completeTask()"><i class="fa fa-check-square"></i></button>
+	</div>
+	<div>
+		<div class="title-group">
+			<span class="pn-task-title">{{ task.title }}</span>
+			<a ng-if="task.status !== 'complete' && ($parent.isMember || $parent.isOwner)" ui-sref="project_task_edit((mref ? { task_id: task.id, mref: mref } : { task_id: task.id }))" class="sm-edit-link"><i class="fa fa-pencil"></i><span>edit</span></a>
+			<p ng-if="task.description" class="supporting-text small">{{ task.description }}</p>
+		</div>
+	</div>
+	<div class="supporting-text small pn-task-info clearfix">
+		<div class="col-md-2">
+			<a ng-if="task.user" ui-sref="user({ id: task.user.id })"><i class="fa fa-user"></i>{{ task.user.name }}</a>
+			<span ng-if="!task.user"><i class="fa fa-user"></i><em>None</em></span>
+		</div>
+		<div class="col-md-2">
+			<a ng-if="task.milestone" ui-sref="milestone({ milestone_id: task.milestone.id })"><i class="fa fa-flag"></i>{{ task.milestone.title }}</a>
+			<span ng-if="!task.milestone" ><i class="fa fa-flag"></i><em>None</em></span>
+		</div>
+		<div class="col-md-8 text-right">
+			<div ng-repeat="category in task.categories" tooltip-placement="left" uib-tooltip="{{ category.title }}" style="background: {{ category.color_hex }}" class="pn-cat-circle pn-cat-circle-xs pn-cat-circle-inline">
+				<i class="fa {{ category.icon_class }}"></i>
+			</div>
+		</div>
+	</div>
+</div>

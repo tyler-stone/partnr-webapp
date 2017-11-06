@@ -1,0 +1,6 @@
+<div class="skill-category-form clearfix" ng-repeat="category in categories">
+	<div style="background: {{ category.color_hex }}" class="pn-cat-circle">
+		<i class="fa {{ category.icon_class }}"></i>
+	</div>
+	<tags-input ng-model="skillCategoryMap[category.id]" placeholder="Add a skill" replace-spaces-with-dashes="false"></tags-input>
+</div>

@@ -1,0 +1,20 @@
+//
+// Tab Overrides
+// --------------------------------------------------
+
+.pn-tab-container.content-container-tabs {
+	border-bottom: 1px solid #c3dde2;
+	margin-top: 10px;
+
+	li.active > a {
+		border: 1px solid #c3dde2;
+		border-bottom-color: transparent;
+		background-color: #fcfcfc;
+
+		&:hover, &:focus {
+			background-color: #fcfcfc;
+			border: 1px solid #c3dde2;
+			border-bottom-color: transparent;
+		}
+	}
+}

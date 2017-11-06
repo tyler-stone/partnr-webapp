@@ -1,0 +1,17 @@
+<div class="content-container with-tabs profile-content-container">
+  <div class="text-center">
+  	<span><strong>{{ connections.length }}</strong> Connections</span>
+  </div>
+</div>
+<div ng-show="loadComplete && connections.length > 0">
+  <div masonry class="search-results">
+    <div ng-repeat="u in connections" class="masonry-brick col-md-4">
+      <user-card user="u"></user-card>
+    </div>
+  </div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

@@ -1,0 +1,53 @@
+
+* {
+	word-break: break-word;
+}
+
+h3 {
+	margin-top: 25px;
+}
+
+.loading {
+	padding: 50px;
+}
+
+.comment {
+	.c-header {
+		font-size: 15px;
+	}
+
+	p {
+		margin: 10px;
+	}
+}
+
+.button-group {
+	margin-top: 10px;
+}
+
+.opaque-notify-message {
+	font-family: inherit;
+	font-size: 20px;
+	color: #cccccc;
+	margin: 25px 0;
+}
+
+.search-results-title {
+  margin-top: 25px;
+  border-bottom: 1px solid #cccccc;
+  display: block;
+}
+
+.search-results {
+  position: relative;
+  margin-top: 10px;
+}
+
+.btn.pn-btn-danger:hover,
+.btn.pn-btn-info:hover,
+.btn.pn-btn-warning:hover,
+.btn.pn-btn-success:hover,
+.btn.pn-conreq-accept:hover,
+.btn.pn-conreq-decline:hover {
+  color: white;
+}

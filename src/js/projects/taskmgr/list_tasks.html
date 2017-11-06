@@ -1,0 +1,36 @@
+<div class="content-container thin with-tabs menu-bar clearfix">
+	<div class="form-group form-inline col-sm-6 less-margin-bottom">
+		<input class="form-control" ng-model="searchText" placeholder="filter...">
+		<button class="btn btn-sm btn-toggle" ng-class="(viewingEntity === 'Milestone' ? 'btn-default' : 'btn-link')" ng-model="viewingEntity" uib-btn-radio="'Milestone'">Milestones</button>
+		<button class="btn btn-sm btn-toggle" ng-class="(viewingEntity === 'Task' ? 'btn-default' : 'btn-link')" ng-model="viewingEntity" uib-btn-radio="'Task'">Tasks</button>
+	</div>
+	<div class="form-group col-sm-6 text-right less-margin-bottom">
+		<button ng-if="$parent.isMember || $parent.isOwner" class="btn btn-primary" ng-click="newEntity()">New {{ viewingEntity }}</button>
+	</div>
+</div>
+
+<div ng-show="loadComplete">
+	<div ng-if="viewingEntity === 'Milestone'" class="clearfix">
+		<div>
+			<div ng-show="milestones.length > 0" ng-repeat="milestone in milestones | orderBy: 'due_date' | filter:searchText track by $index" class="col-md-4">
+		    	<milestone-tile milestone="milestone"></milestone-tile>
+			</div>
+		</div>
+		<div ng-show="milestones.length <= 0" class="text-center">
+			<h2 class="opaque-notify-message">There are currently no milestones.</h2>
+		</div>
+	</div>
+	<div ng-if="viewingEntity === 'Task'" class="clearfix">
+		<div>
+			<div ng-show="tasks.length > 0" ng-repeat="task in tasks | filter:searchText track by $index">
+		    	<task-tile task="task"></task-tile>
+			</div>
+		</div>
+		<div ng-show="tasks.length <= 0" class="text-center">
+			<h2 class="opaque-notify-message">There are currently no tasks.</h2>
+		</div>
+	</div>
+</div>
+<div ng-hide="loadComplete" class="text-center loading">
+	<img src="/assets/ajax-loader.gif">
+</div>

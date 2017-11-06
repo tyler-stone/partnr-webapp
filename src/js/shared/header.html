@@ -1,0 +1,53 @@
+<nav class="pn-nav navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a ui-sref="home.feed"><img class="partnr-logo" src="/assets/partnr-logo.png" /></a>
+		</div>
+
+		<div ng-if="isLoggedIn()" ng-init="getUserAvatar()" class="collapse navbar-collapse pull-right">
+			<ul class="nav navbar-nav">
+				<li ng-class="{'active': $state.includes('home.feed')}"><a ui-sref="home.feed">Home</a></li>
+				<li ng-class="{'active': $state.includes('project_list')}"><a ui-sref="project_list">Browse</a></li>
+				<li uib-dropdown on-toggle="setRead(open)">
+					<a href id="notification-dropdown" uib-dropdown-toggle><i class="fa fa-flag"></i><span ng-if="newNotifications.length > 0" class="badge">{{ newNotifications.length }}</span></a> <!-- ng-click="toggleNotificationsDropdown()" -->
+					<ul uib-dropdown-menu class="notification-dropdown-menu header-dropdown" aria-labelledby="notification-dropdown">
+						<li class="notification-item" ng-repeat="n in allNotifications | limitTo:10">
+							<a href ng-click="resolveLink(n)"><span class="badge" ng-hide="n.read">new!</span> {{ n.actor.first_name }} {{ n.actor.last_name }} {{ n.parsedMessage }}</a>
+						</li>
+						<li class="divider"></li>
+						<li class="notification-item">
+							<a href ng-click="$state.go('notification_list')">view more</a>
+						</li>
+					</ul>
+				</li>
+				<li uib-dropdown>
+					<a href id="user-dropdown" uib-dropdown-toggle>
+						<div class="header-img-partnr">
+							<img ng-style="{'background-image': avatarURL}"/>
+						</div>
+					</a>
+					<ul uib-dropdown-menu class="header-dropdown" aria-labelledby="user-dropdown">
+						<li><a href ng-click="$state.go('user_project_list')">My Projects</a></li>
+						<li><a href ng-click="$state.go('project_create')">Create Project</a></li>
+						<li><a href ng-click="doViewProfile()">My Profile</a></li>
+						<li><a href ng-click="$state.go('profile_edit')">Edit Profile</a></li>
+						<li class="divider"></li>
+						<li><a href ng-click="doLogout()">Log Out</a></li>
+					</ul>
+				</li>
+				<!-- <li ng-class="{'active': $state.includes('inbox')}"><a ui-sref="inbox">Inbox</a></li>
+				<li ng-class="{'active': $state.includes('partners')}"><a ui-sref="partners">Partners</a></li>
+				<li ng-class="{'active': $state.includes('portfolio')}"><a ui-sref="portfolio">Portfolio</a></li>
+				<li ng-class="{'active': $state.includes('settings')}"><a ui-sref="settings">Settings</a></li> -->
+			</ul>
+			<notifications-dropdown visible="notificationsDropdownVisible" do-dropdown-change="toggleNotificationsDropdown()"></notifications-dropdown>
+		</div>
+		<div ng-if="!(isLoggedIn())" class="collapse navbar-collapse pull-right">
+			<ul class="nav navbar-nav">
+				<li><a ui-sref="login">Log In</a></li>
+				<li><a ui-sref="account_create">Sign Up</a></li>
+			</ul>
+		</div>
+	</div>
+
+</nav>

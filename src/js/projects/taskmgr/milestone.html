@@ -1,0 +1,43 @@
+<div ng-show="loadComplete">
+	<div class="content-container with-tabs menu-bar clearfix milestone-bar">
+		<div class="row">
+			<h2>{{ milestone.title }}</h2>
+		</div>
+		<div class="row" ng-if="milestone.due_date">
+			<div class="sub-heading-info" ng-if="(milestoneDate >= now) || tasksComplete >= tasks.length">
+				<span><i class="fa fa-calendar"></i>{{ milestone.due_date | date:medium }}</span>
+			</div>
+			<div class="sub-heading-info danger" ng-if="(milestoneDate < now) && tasksComplete < tasks.length">
+				<span><i class="fa fa-exclamation-triangle"></i>{{ milestone.due_date | date:medium }}</span>
+			</div>
+		</div>
+		<div class="row">
+			<uib-progressbar ng-if="tasks.length > 0" value="tasksComplete" max="tasks.length" type="success"></uib-progressbar>
+			<uib-progressbar ng-if="tasks.length === 0" value="0" max="1" type="success"></uib-progressbar>
+			<div class="supporting-text">
+				<span>{{ tasksComplete }} of {{ tasks.length }} tasks complete</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group text-right less-margin-bottom">
+				<button ng-if="$parent.isMember || $parent.isOwner" class="btn btn-default" ui-sref="project_milestone_edit({ milestone_id: milestone.id })" class="sm-edit-link"><i class="fa fa-pencil"></i><span>Edit</span></button>
+				<button ng-if="$parent.isMember || $parent.isOwner" class="btn btn-primary" ng-click="newTask()">New Task</button>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix">
+		<div>
+			<div ng-show="tasks.length > 0" ng-repeat="task in tasks track by $index">
+		    	<task-tile mref="milestone.id" task="task"></task-tile>
+			</div>
+		</div>
+		<div ng-show="tasks.length <= 0" class="text-center">
+			<h2 class="opaque-notify-message">There are currently no tasks for this milestone.</h2>
+		</div>
+	</div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+	<div class="text-center loading">
+		<img src="/assets/ajax-loader.gif">
+	</div>
+</div>

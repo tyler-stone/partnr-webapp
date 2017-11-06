@@ -1,0 +1,15 @@
+<div class="content-container with-tabs profile-content-container">
+  <div class="text-center">
+  	<span><strong>{{ user.projects.length }}</strong> Projects</span>
+  </div>
+</div>
+<div masonry ng-show="loadComplete">
+	<div ng-repeat="p in user.projects" class="masonry-brick col-md-4">
+		<project-tile project="p"></project-tile>
+	</div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

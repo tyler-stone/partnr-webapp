@@ -1,0 +1,25 @@
+<div class="partnr-header-wrapper" ng-show="loadComplete">
+  <div class="partnr-page-header project-header with-image clearfix">
+    <div class="partnr-header-image" pn-bg-img="{{project.links.cover_photo}}"></div>
+    <h1 class="text-center">{{ project.title }}</h1>
+    <div class="text-center project-status">
+      <span><i ng-if="project.status === 'not_started'" class="fa fa-circle-o"></i>
+      <i ng-if="project.status === 'in_progress'" class="fa fa-arrow-circle-right"></i>
+      <i ng-if="project.status === 'complete'" class="fa fa-check-circle"></i> {{ getStatus() }}</span>
+    </div>
+  </div>
+</div>
+<toasts></toasts>
+<ul class="pn-tab-container content-container-tabs nav nav-tabs" ng-show="loadComplete" role="tablist">
+  <li role="presentation" ng-class="{'active': $state.current.name === 'project'}"><a href ui-sref="project({'project_id' : project.id})" role="tab">Project</a></li>
+  <li role="presentation" ng-class="{'active': $state.current.name.indexOf('task') > -1 || $state.current.name.indexOf('milestone') > -1}"><a href ui-sref="project_milestones({'project_id' : project.id})" role="tab"><i ng-if="isOwner || isMember" class="fa fa-unlock"></i> Tasks</a></li>
+  <li ng-if="isOwner" role="presentation" ng-class="{'active': $state.current.name === 'project_edit'}"><a href ui-sref="project_edit({'project_id' : project.id})" role="tab"><i class="fa fa-unlock"></i> Edit Project</a></li>
+  <li ng-if="isOwner" role="presentation" ng-class="{'active': $state.current.name === 'application_list'}"><a href ui-sref="application_list({'project_id' : project.id})" role="tab"><i class="fa fa-unlock"></i> Applications</a></li>
+  <li ng-if="isMember" role="presentation" ng-class="{'active': $state.current.name === 'project_conversation'}"><a href ui-sref="project_conversation({'project_id' : project.id})" role="tab"><i class="fa fa-unlock"></i> Messages</a></li>
+</ul>
+<div ui-view="projectinfo" ng-show="$parent.loadComplete"></div>
+<div class="content-container" ng-hide="loadComplete">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

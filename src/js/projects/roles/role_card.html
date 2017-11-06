@@ -1,0 +1,21 @@
+<div class="pn-role-card container-fluid">
+  <div class="pn-bg-img row">
+    <div class="pn-img-placeholder" pn-bg-img="{{ role.project.links.cover_photo }}">
+  </div>
+  <div class="pn-card-content row">
+    <div class="col-xs-6">
+      <div class="pn-role-title"  ng-click="$state.go('project', { project_id: role.project.id })">
+        <h3>{{ role.title }}</h3>
+      </div>
+      <div class="pn-proj-title" ng-click="$state.go('project', { project_id: role.project.id })">
+        <h5>{{ role.project.title }}</h5>
+      </div>
+      <div class="pn-role-apply" ng-click="$state.go('project', { project_id: role.project.id })">
+        <div class="pn-btn-primary">Check it out</div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="pn-cat-circle-lg" ng-show="!!role.category" uib-tooltip="{{ role.category.title }}">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div ng-show="loadComplete" class="content-container with-tabs clearfix">
+	<h2 ng-if="crudState === 'create'">New Milestone</h2>
+	<h2 ng-if="crudState === 'edit'">Edit Milestone</h2>
+	<form class="col-md-6" name="milestoneForm">
+		<fieldset ng-disabled="formLoading">
+			<div class="form-group">
+				<label for="milestoneName">name</label>
+				<input id="milestoneName" class="form-control" ng-model="milestone.title" required />
+			</div>
+			<div class="form-group">
+				<label for="milestoneDate">due date (optional)</label>
+				<div uib-datepicker ng-model="milestone.due_date" class="well well-sm"></div>
+			</div>
+
+			<div ng-if="crudState === 'create'">
+				<button class="btn btn-default" ng-click="reset()">Reset</button>
+				<button class="btn pn-btn-primary" ng-click="createMilestone()" ng-disabled="milestoneForm.$invalid">Create</button>
+			</div>
+			<div ng-if="crudState === 'edit'">
+				<button class="btn pn-btn-primary" ng-click="saveMilestone()" ng-disabled="milestoneForm.$invalid">Save</button>
+				<button class="btn pn-btn-danger" ng-click="delete()">Delete</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

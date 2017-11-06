@@ -1,0 +1,27 @@
+<div class="content-container with-tabs" ng-show="loadComplete">
+    <h3>Description</h3>
+    <p ng-bind-html="project.description | linky">{{project.description}}</p>
+    <h3>Roles</h3>
+    <div class="clearfix">
+        <div class="col-md-3" ng-repeat="role in project.roles">
+            <div class="internal-container no-margin">
+                <span class="title">{{role.title}}</span>
+                <a href class="subtitle" ng-show="role.user" ui-sref="user({ id: role.user.id })">{{role.user.first_name}}
+                    {{role.user.last_name}}</a><span class="subtitle" ng-hide="role.user"><em>None</em></span>
+                <div class="buttons-right">
+                    <button type="button" class="btn btn-primary" ng-if="!role.user && canApply"
+                            ng-click="doApply(role.id)">Apply
+                    </button>
+                    <button type="button" class="pn-btn-danger" ng-if="role.canRemoveUser" ng-click="doRemoveUser(role)" uib-tooltip="Remove user from role.">
+                      <i class="fa fa-sign-out"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+    <div class="text-center loading">
+        <img src="/assets/ajax-loader.gif">
+    </div>
+</div>

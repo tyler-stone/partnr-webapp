@@ -1,0 +1,102 @@
+<div class="partnr-header-wrapper" ng-show="loadComplete">
+    <div class="profile-image" ng-style="{'background-image': 'url(' + user.links.avatar + ')' }"></div>
+    <div class="partnr-page-header profile-header clearfix">
+        <h1 class="text-center">{{ user.first_name }} {{ user.last_name }}</h1>
+        <div class="profile-highlights text-center">
+            <span ng-if="!!user.profile.location.geo_string"><i class="fa fa-map-marker"></i> {{ user.profile.location.geo_string }}</span>
+            <span ng-if="user.profile.positions.length > 0"><i class="fa fa-briefcase"></i> {{ user.profile.positions[user.profile.positions.length - 1].title }}</span>
+        </div>
+        <div class="profile-actions text-center" ng-if="!!currentUser && currentUser.id !== user.id">
+            <pn-conn-btn user="user" btnsize="'btn-sm'"></pn-conn-btn>
+            <button class="btn btn-sm btn-primary" ng-if="msgBtnEnabled">message</button>
+        </div>
+        <div ng-if="user.skillscore.scored.categories.length > 0" class="profile-header-skills text-center">
+            <div ng-repeat="cat in user.skillscore.scored.categories | orderBy: '-score' | limitTo: 3" tooltip-placement="top" uib-tooltip="{{ cat.category.title }}"  class="pn-cat-circle pn-cat-circle-inline" ng-class="'pn-cat-' + cat.category.title.toLowerCase().replace(' ', '-')">
+                <i class="fa {{ cat.category.icon_class }}"></i>
+            </div>
+            <div ng-if="user.skillscore.scored.categories.length > 3" style="background: #333" class="more-skills pn-cat-circle pn-cat-circle-inline">
+                <span>+{{ user.skillscore.scored.categories.length - 3 }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<toasts></toasts>
+<div class="col-md-3 content-container profile-sidebar" ng-show="loadComplete && profileHasSidebarInfo">
+    <div ng-if="user.totalSkillScore > 0" class="user-achievements">
+        <div class="col-md-3 logo">
+            <i class="fa fa-trophy" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-8 score">
+            <div class="title">{{user.totalSkillScore }}</div>
+            <div class="subtitle">skill score</div>
+        </div>
+    </div>
+    <div ng-if="user.projects.length > 0" class="user-achievements">
+        <div class="col-md-3 logo">
+            <i class="fa fa-flag" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-8 score">
+            <div class="title">{{ user.projects.length }}</div>
+            <div class="subtitle">projects</div>
+        </div>
+    </div>
+    <div ng-if="user.profile.positions.length > 0">
+        <label style="margin-top: 0;">Positions</label>
+        <div class="clearfix">
+            <div ng-repeat="position in user.profile.positions track by $index">
+                <div class="profile-tidbit-icon">
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="profile-tidbit-info">
+                    <span><strong>{{ position.title }}</strong></span>
+                    <span>{{ position.company }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="user.profile.school_infos.length > 0">
+        <label>Education</label>
+        <div class="clearfix">
+            <div ng-repeat="school in user.profile.school_infos track by $index">
+                <div class="profile-tidbit-icon">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="profile-tidbit-info">
+                    <span><strong>{{ school.field }}</strong></span>
+                    <span>{{ school.school_name }}</span>
+                    <span>Class of {{ school.grad_year }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="user.profile.interests.length > 0">
+        <label>Interests</label>
+        <div class="clearfix">
+            <span class="profile-interest-tag" ng-repeat="interest in user.profile.interests track by $index">
+          {{ interest.title }}
+      </span>
+        </div>
+    </div>
+</div>
+<div ng-class="profileHasSidebarInfo ? 'col-md-9' : 'col-md-12'" ng-show="loadComplete">
+    <ul class="pn-tab-container content-container-tabs nav nav-tabs" role="tablist">
+        <li role="presentation" ng-class="{'active': $state.current.name === 'user'}">
+            <a href ui-sref="user({'id' : user.id})" role="tab">Activity</a>
+        </li>
+        <li role="presentation" ng-class="{'active': $state.current.name === 'profile_projects'}">
+            <a href ui-sref="profile_projects({'id' : user.id})" role="tab">Projects</a>
+        </li>
+        <!--     <li role="presentation" ng-class="{'active': $state.current.name === 'profile_connections'}">
+      <a href ui-sref="profile_connections({'id' : user.id})" role="tab">Connections</a>
+    </li> -->
+        <li role="presentation" ng-class="{'active': $state.current.name === 'profile_skills'}">
+            <a href ui-sref="profile_skills({'id' : user.id})" role="tab">Skills</a>
+        </li>
+    </ul>
+    <div ui-view="profileinfo" class="clearfix"></div>
+</div>
+<div ng-hide="loadComplete" class="content-container">
+    <div class="text-center loading">
+        <img src="/assets/ajax-loader.gif">
+    </div>
+</div>

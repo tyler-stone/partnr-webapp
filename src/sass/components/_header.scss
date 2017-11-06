@@ -1,0 +1,215 @@
+// Navbar
+// --------------------------------------------------
+
+.pn-nav.navbar {
+	margin-bottom: 0;
+}
+
+nav .badge {
+  font-size: 10px;
+  padding: 2px 3px;
+  background: #ff9a39;
+  position: relative;
+  left: -5px;
+  top: 4px;
+}
+
+// Logo
+// --------------------------------------------------
+
+.logo-container {
+	padding: 5px;
+
+	> .version {
+		padding-left: 15px;
+	}
+}
+
+.partnr-logo {
+	max-height: 40px;
+	display: inline-block;
+}
+
+
+// Header Dropdowns
+// --------------------------------------------------
+
+#user-dropdown {
+  padding: 7px;
+}
+
+.header-img-partnr {
+  margin: -3px -1px;
+  border-radius: 25px;
+  display: inline-block;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+
+
+.notification-dropdown-menu {
+  width: 300px;
+}
+
+.dropdown-menu.header-dropdown {
+  right: 0;
+  left: inherit;
+
+  & > li > a {
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+
+// Page Header
+// -------------------------------------------------
+
+.partnr-header-wrapper {
+
+  &.disconnected {
+    margin-top: 20px;
+  }
+
+  .content-container {
+    border-radius: 0 0 3px 3px;
+    border-top: 0;
+    background: #aee3ed;
+  }
+}
+
+.sidebar-header {
+  padding: 10px;
+  display: block;
+  text-align: left;
+  font-size: 18px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-content {
+  margin: 10px;
+}
+
+.partnr-page-header {
+	border-radius: 0 0 3px 3px;
+	box-shadow: $default-box-shadow;
+  padding: 40px 15px 20px;
+  background: #04859d;
+  margin-bottom: 15px;
+
+  &.with-image {
+    background: #f9f9f9;
+    padding: 0;
+    margin-bottom: inherit;
+
+    h1 {
+      padding-top: 25px;
+      padding-bottom: 0;
+    }
+
+    h1, h2, h3 {
+      color: #002b33;
+    }
+  }
+
+  .partnr-header-image {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    box-shadow: inset 0 -20px 46px -20px #333;
+  }
+
+  &.light {
+    background: #0ea1bc; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #0ea1bc 0%, #58bfd2 50%, #58bfd2 50%, #0ea1bc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #0ea1bc 0%,#58bfd2 50%,#58bfd2 50%,#0ea1bc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #0ea1bc 0%,#58bfd2 50%,#58bfd2 50%,#0ea1bc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    .impact-container {
+      background: #0EA1BC
+    }
+  }
+  h1 {
+    font-size: 45px;
+    padding-bottom: 45px;
+  }
+
+  h1, h2, h3 {
+  	color: white;
+  }
+
+  input::-webkit-input-placeholder{
+    color: #4f95a2 !important;
+  }
+
+  input:-moz-placeholder{
+    color: #4E96A3 !important;
+  }
+
+  input::-moz-placeholder{
+    color: #4E96A3 !important;
+  }
+
+  input:-ms-input-placeholder {
+    color: #4E96A3 !important;
+  }
+
+  &.with-button-pane {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #03677a;
+  }
+
+  .impact-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .impact-container {
+    padding: 20px;
+    border: 1px solid #03677a;
+    box-shadow: 0 0 1px #03677a;
+    background: #2791a5;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .form-control {
+  	color: white;
+  	background-color: #03677A;
+  	border: 1px solid #025160;
+
+  	&:focus {
+  		border-color: #025160;
+  		box-shadow: inherit;
+  	}
+  }
+
+  .input-group {
+    input[type="text"] {
+      font-size: 20px;
+      height: 42px;
+    }
+
+    button {
+      font-size: 20px;
+    }
+  }
+}
+
+
+.impact-title {
+  padding-top: 50px;
+  text-shadow: 1px 2px 1px #03677a;
+}

@@ -1,0 +1,12 @@
+<div class="col-md-12 row-eq-height pn-activity-block" ng-if="doNotDisplay !== true">
+  <div class="col-md-offset-2 col-md-2 pn-activity-date">{{ activity.displayDate }}</div>
+  <div class="col-md-1 pn-feed-img-partnr">
+    <img ng-src="{{ activity.user.links.avatar }}" alt="{{ activity.user.first_name }}">
+  </div>
+  <div class="col-md-6 pn-activity-text">
+    <span class="pn-activity-username">{{ activity.user.name }}</span>
+    <a href ng-click="resolveLink(activity)">
+      <span class="pn-activity-content">{{ activity.parsedMessage }}</span>
+    </a>
+  </div>
+</div>

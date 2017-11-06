@@ -1,0 +1,19 @@
+<div class="text-center activity-feed-header">
+  <h1>Recent Activity</h1>
+</div>
+<div class="pn-activity-feed">
+  <div ng-repeat="a in activities">
+		<feed-activity activity="a"></feed-activity>
+  </div>
+</div>
+<div class="text-center" id="feedScroll" ng-show="loadComplete">
+  <div class="pn-btn-default" ng-click="getNextFeedPage()" in-view="getNextFeedPage()" in-view-options="{ 'debounce': 500 }">Show more activity</div>
+</div>
+<div class="text-center" ng-show="endOfFeed">
+  <h4>No more activity to show.</h4>
+</div>
+<div class="loading-wrapper" ng-hide="loadComplete">
+	<div class="text-center loading-container">
+		<img src="/assets/ajax-loader.gif">
+	</div>
+</div>

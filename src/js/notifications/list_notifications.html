@@ -1,0 +1,17 @@
+<toasts></toasts>
+<div class="content-container">
+	<div ng-show="loadComplete">
+		<h3>Notifications</h3>
+		<div class="internal-container" ng-repeat="n in allNotifications track by $index">
+      <div class="title">
+        <span class="badge" ng-hide="n.read">new!</span>&nbsp;
+        <a href ng-click="resolveLink(n)">
+          {{ n.actor.first_name }} {{ n.actor.last_name }} {{ n.parsedMessage }}
+        </a>
+      </div>
+		</div>
+	</div>
+	<div ng-hide="loadComplete" class="text-center loading">
+		<img src="/assets/ajax-loader.gif">
+	</div>
+</div>

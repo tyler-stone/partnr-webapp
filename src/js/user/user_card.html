@@ -1,0 +1,65 @@
+<div class="pn-user-card">
+  <div class="pn-user-card-top-row">
+    <div class="pn-user-card-image">
+      <a class="pn-img-partnr" ui-sref="user({ id: user.id })">
+        <img ng-src="{{ user.links.avatar }}" alt="{{ user.name }}">
+      </a>
+    </div>
+    <div class="pn-user-card-name" ui-sref="user({ id: user.id })">{{ user.name }}</div>
+    <div class="pn-user-card-position" ng-show="{{ !!user.profile && user.profile.positions.length > 0 }}">
+      {{ user.profile.positions[0].title}} at {{ user.profile.positions[0].company }}
+    </div>
+    <div class="pn-user-card-contact">
+      <pn-conn-btn user="user"></pn-conn-btn>
+    </div>
+  </div>
+  <div class="pn-user-card-detail-row clearfix">
+    <div class="pn-user-card-location" ui-sref="user({ id: user.id })" ng-show="{{ !!user.profile.location }}">
+      {{ user.profile.location.geo_string }}
+    </div>
+    <div class="pn-user-card-projects" ui-sref="user({ id: user.id })">
+      {{ user.projects.length }} Projects
+    </div>
+  </div>
+  <div class="pn-user-card-bottom-row" ng-if="user.skillscore.scored.categories.length > 0">
+    <span class="pn-user-card-category-secondary" ng-if="user.skillscore.scored.categories.length > 2">
+      <div data-toggle="tooltip"
+       data-placement="top"
+       uib-tooltip="{{ user.skillscore.scored.categories[2].category.title }}"
+       class="pn-cat-circle-sm"
+       ng-class="user.skillscore.scored.categories[2].divClass"
+       data-original-title="{{ user.skillscore.scored.categories[2].category.title }}">
+        <i class="fa {{ user.skillscore.scored.categories[2].category.icon_class }} "></i>
+      </div>
+    </span>
+    <span class="pn-user-card-category-primary">
+      <div data-toggle="tooltip"
+       data-placement="top"
+       uib-tooltip="{{ user.skillscore.scored.categories[0].category.title }}"
+       class="pn-cat-circle"
+       ng-class="user.skillscore.scored.categories[0].divClass"
+       data-original-title="{{ user.skillscore.scored.categories[0].category.title }}">
+        <i class="fa {{ user.skillscore.scored.categories[0].category.icon_class }} "></i>
+      </div>
+    </span>
+    <span class="pn-user-card-category-secondary" ng-if="user.skillscore.scored.categories.length > 1">
+      <div data-toggle="tooltip"
+       data-placement="top"
+       uib-tooltip="{{ user.skillscore.scored.categories[1].category.title }}"
+       class="pn-cat-circle-sm"
+       ng-class="user.skillscore.scored.categories[1].divClass"
+       data-original-title="{{ user.skillscore.scored.categories[1].category.title }}">
+        <i class="fa {{ user.skillscore.scored.categories[1].category.icon_class }} "></i>
+      </div>
+    </span>
+  </div>
+  <div class="pn-user-card-footer pn-skills-container" ng-if="user.skillscore.scored.skills.length > 0">
+    <div class="pn-skill-tag" ng-class="user.skillscore.scored.skills[0].divClass">{{ user.skillscore.scored.skills[0].skill.title }}</div>
+    <div class="pn-skill-tag"
+      ng-class="user.skillscore.scored.skills[1].divClass"
+      ng-if="user.skillscore.scored.skills.length > 1">{{ user.skillscore.scored.skills[1].skill.title }}</div>
+    <div class="pn-skill-tag"
+      ng-class="user.skillscore.scored.skills[2].divClass"
+      ng-if="user.skillscore.scored.skills.length > 2">{{ user.skillscore.scored.skills[2].skill.title }}</div>
+  </div>
+</div>

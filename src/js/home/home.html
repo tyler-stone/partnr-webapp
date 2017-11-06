@@ -1,0 +1,27 @@
+<toasts></toasts>
+<div class="partnr-header-wrapper">
+	<div class="partnr-page-header light clearfix">
+		<h1 class="text-center impact-title" ng-show="user">{{ user.first_name }}, discover something new.</h1>
+		<h1 class="text-center impact-title" ng-hide="user">Discover something new.</h1>
+		<div class="impact-group">
+			<div class="impact-container text-center col-md-5 col-xs-5">
+				<h2>Find something.</h2>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search for a project, role or user" ng-keypress="processInput($event)">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" ng-click="doSearch()"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+			</div>
+			<div class="col-md-1 col-xs-1 text-center">
+				<h2><em>or</em></h2>
+			</div>
+			<div class="impact-container text-center col-md-5 col-xs-5">
+				<h2>Start something.</h2>
+				<button class="btn-lg btn-primary" ng-click="$state.go('project_create')">Create Project</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div ui-view="feed"></div>
+<div ui-view="landing"></div>

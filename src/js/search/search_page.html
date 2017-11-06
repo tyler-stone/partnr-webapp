@@ -1,0 +1,64 @@
+<toasts></toasts>
+<div class="partnr-page-header light clearfix">
+  <div class="text-center">
+    <h1 class="impact-title">Search</h1>
+    <h3>Find something new.</h3>
+  </div>
+</div>
+<div class="content-container">
+  <div class="pn-search-bar form-inline">
+    <div class="pn-search-query-group input-group">
+      <input type="text" placeholder="Search" class="form-control" ng-model="query" ng-keypress="processInput($event)">
+      <div class="input-group-addon pn-btn-search" ng-click="doSearch()"></div>
+    </div>
+    <div class="pn-search-filter-group btn-group" data-toggle="buttons">
+      <label class="pn-btn-default btn" ng-class="{ 'active': entities.includes('User') }" >
+        <input ng-click="toggleEntityInQueryParams('User')" type="checkbox" autocomplete="off">Users
+      </label>
+      <label class="pn-btn-default btn" ng-class="{ 'active': entities.includes('Project') }" >
+        <input ng-click="toggleEntityInQueryParams('Project')" type="checkbox" autocomplete="off">Projects
+      </label>
+      <label class="pn-btn-default btn" ng-class="{ 'active': entities.includes('Role') }" >
+        <input ng-click="toggleEntityInQueryParams('Role')" type="checkbox" autocomplete="off">Roles
+      </label>
+    </div>
+  </div>
+
+  <div ng-show="loadComplete && projects.length > 0">
+    <div class="search-results-title">
+      <h2>Projects</h2>
+    </div>
+    <div masonry class="search-results">
+      <div ng-repeat="p in projects" class="masonry-brick col-md-4">
+        <project-tile project="p"></project-tile>
+      </div>
+    </div>
+  </div>
+  <div ng-show="loadComplete && users.length > 0">
+    <div class="search-results-title">
+      <h2>Users</h2>
+    </div>
+    <div masonry class="search-results">
+      <div ng-repeat="u in users" class="masonry-brick col-md-4">
+        <user-card user="u"></user-card>
+      </div>
+    </div>
+  </div>
+  <div ng-show="loadComplete && roles.length > 0">
+    <div class="search-results-title">
+      <h2>Roles</h2>
+    </div>
+    <div masonry class="search-results">
+      <div ng-repeat="r in roles" class="masonry-brick col-md-4">
+        <role-card role="r"></role-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-wrapper" ng-hide="loadComplete">
+    <div class="text-center loading-container">
+      <img src="/assets/ajax-loader.gif">
+    </div>
+  </div>
+
+</div>

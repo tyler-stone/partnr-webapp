@@ -1,0 +1,69 @@
+<toasts></toasts>
+<h1>Welcome to Partnr</h1>
+<div class="content-container" ng-show="loadComplete">
+  <h2>Time to create your profile!</h2>
+  <h3>Add a profile picture</h3>
+  <form>
+    <input type="file" onchange="angular.element(this).scope().addAvatar(this)" multiple accept='image/*' />
+  </form>
+  <h3>Your current location</h3>
+  <input type="text" class="form-control" ng-model="location" />
+
+  <h3 class="inline">Schools <button class="btn btn-primary" ng-click="addSchool()">+</button></h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="school in schools track by $index">
+      <div class="internal-container">
+        <label for="school_name">School Name</label>
+        <input type="text" name="school_name" class="form-control" ng-model="school.school_name"/>
+
+        <label for="grad_year">Graduation Year</label>
+        <input type="text" name="grad_year" class="form-control" ng-model="school.grad_year"/>
+
+        <label for="major">Major</label>
+        <input type="text" name="major" class="form-control" ng-model="school.field"/>
+
+        <div class="buttons-right">
+          <button type="button" class="btn btn-danger" ng-click="deleteSchool($index)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="inline">Positions <button class="btn btn-primary" ng-click="addPosition()">+</button></h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="position in positions track by $index">
+      <div class="internal-container">
+        <label for="position_title">Position Title</label>
+        <input type="text" name="position_title" class="form-control" ng-model="position.title"/>
+
+        <label for="position.company">Company</label>
+        <input type="text" name="position.company" class="form-control" ng-model="position.company"/>
+
+        <div class="buttons-right">
+          <button type="button" class="btn btn-danger" ng-click="deletePosition($index)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="inline">Interests <button class="btn btn-primary" ng-click="addInterest()">+</button></h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="interest in interests track by $index">
+      <div class="internal-container">
+        <label for="interest_title">Name</label>
+        <input type="text" name="interest_title" class="form-control" ng-model="interest.title"/>
+
+        <div class="buttons-right">
+          <button type="button" class="btn btn-danger" ng-click="deleteInterest($index)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" ng-click="doSave()">Finish</button>
+</div>
+<div ng-hide="loadComplete" class="content-container">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

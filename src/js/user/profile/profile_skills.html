@@ -1,0 +1,28 @@
+<div class="content-container with-tabs profile-content-container">
+  <div class="text-center">
+  	<span>Total Score: <strong>{{ user.totalSkillScore }}</strong></span>
+  </div>
+</div>
+<div ng-show="loadComplete">
+	<div class="profile-skill-card clearfix content-container" ng-repeat="cat in user.skillscore.scored.categories | orderBy: '-score'">
+    <div class="skill-cat-info">
+      <div class="pn-cat-overview">
+    		<div class="pn-cat-circle pn-cat-circle-inline pn-cat-circle-lg" style="background: {{ cat.category.color_hex }}"><i class="fa {{ cat.category.icon_class }}"></i></div>
+        <span class="pn-scard-skillscore">{{ cat.score }}</span>
+        <span class="pn-scard-points">points</span>
+      </div>
+    </div>
+    <div class="pn-cat-details">
+  		<h3 class="pn-scard-title">{{ cat.category.title }}</h3>
+      <div class="pn-skills-container">
+        <span ng-repeat="skill in categorySkillMap[cat.category.title]" class="pn-skill-tag" ng-class="'pn-cat-' + skill.category.title.toLowerCase().replace(' ','-')">
+          {{ skill.title }}
+        </span>
+    </div>
+  </div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

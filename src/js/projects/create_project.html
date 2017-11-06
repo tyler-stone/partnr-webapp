@@ -1,0 +1,71 @@
+<toasts></toasts>
+<h1 class="col-md-8 pn-content-centered centered header-outside-container">Create a Project</h1>
+<div class="create-project-process content-container col-md-8 pn-content-centered centered">
+	<div class="progress-bar-wrapper">
+		<uib-progressbar max="5" value="step"><span style="white-space:nowrap;">{{ stepNames[step - 1] }}</span></uib-progressbar>
+	</div>
+	<div ng-show="step === 1">
+		<div class="clearfix" ng-hide="loading">
+			<div>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input name="name" type="text" class="form-control" ng-model="project.title" />
+					<label for="description">Description</label>
+					<textarea class="form-control" ng-model="project.description"></textarea>
+				</div>
+
+				<div class="button-group pull-right">
+					<button class="btn btn-primary" ng-disabled="project.description.length < 1 || project.title.length < 1" ng-click="stepUp()" >Next ></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="step === 2">
+		<div class="form-group clearfix" ng-hide="loading">
+			<h3>What is your role on this project?</h3>
+			<input name="owner_role" type="text" class="form-control" ng-model="ownerRole.title" />
+			<div class="button-group pull-right">
+				<button class="btn btn-default" ng-click="stepDown()" >< Back</button>
+				<button class="btn btn-primary" ng-disabled="!(validateOwnerRole())" ng-click="stepUp()">Next ></button>
+			</div>
+		</div>
+	</div>
+	<div ng-show="step === 3">
+		<h3>Add some more roles to this project</h3>
+		<div ng-hide="loading" class="clearfix">
+			<div>	
+				<div class="form-group">
+					<input ng-repeat="role in roles track by $index" style="margin-bottom: 5px;" name="additional_role" type="text" class="form-control" ng-model="roles[$index].title" placeholder="{{ rolePlaceholders[($index % rolePlaceholders.length)] }}"/>
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-primary" ng-click="addRole()">Add a Role</button>
+				</div>
+			</div>
+			<div class="button-group pull-right">
+				<button class="btn btn-default" ng-click="stepDown()" >< Back</button>
+				<button class="btn btn-primary" ng-click="stepUp()">Next ></button>
+			</div>
+		</div>
+	</div>
+	<div ng-show="step === 4">
+		<h3>Add a cover photo to this project</h3>
+		<h5>Suggested Size: 1440 Pixel width and 300 Pixel height</h5>
+		<div ng-hide="loading" class="clearfix">
+			<div>	
+				<label for="name">Cover Photo</label>
+					<input type="file" onchange="angular.element(this).scope().addCoverPhoto(this)" accept='image/*' />
+			</div>
+			<div class="button-group pull-right">
+				<button class="btn btn-default" ng-click="stepDown()" >< Back</button>
+				<button class="btn btn-primary" ng-click="stepUp()">Finish</button>
+			</div>
+		</div>
+	</div>
+	<div ng-show="!loading && step === 5" class="text-center">
+		<i class="fa fa-thumbs-up fa-5"></i>
+		<h1>You're Done!</h1>
+	</div>
+	<div ng-show="loading" class="loading text-center">
+		<img src="/assets/ajax-loader.gif">
+	</div>
+</div>

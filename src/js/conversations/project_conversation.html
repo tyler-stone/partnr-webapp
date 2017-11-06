@@ -1,0 +1,26 @@
+<div ng-show="loadComplete" class="content-container with-tabs">
+    <h2>Messages</h2>
+    <div>
+        <div ng-show="conversation.messages.length > 0">
+            <div class="internal-container comment" ng-repeat="message in conversation.messages">
+                <span class="c-header"><strong><a href ui-sref="user({ id: message.user.id })">{{ message.user.name }}</a></strong> on {{ message.sent_at | date: 'mediumDate' }}:</span>
+                <p ng-bind-html="message.body | linky">{{ message.body }}</p>
+            </div>
+        </div>
+        <div ng-hide="conversation.messages.length > 0" class="text-center">
+            <h2 class="opaque-notify-message">There are currently no messages.</h2>
+        </div>
+        <div class="form-group clearfix">
+            <textarea name="new-message" class="form-control" ng-model="newMessage"
+                      ng-disabled="isMessageSubmitting"></textarea>
+            <button class="btn btn-primary pull-right button-group" ng-click="sendMessage()"
+                    ng-disabled="isMessageSubmitting">Send
+            </button>
+        </div>
+    </div>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+    <div class="text-center loading">
+        <img src="/assets/ajax-loader.gif">
+    </div>
+</div>

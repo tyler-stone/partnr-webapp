@@ -1,0 +1,14 @@
+<div name=loadscreen class="text-center loading loading-screen" ng-hide="messages.length < 1 || isLoaded" class="loading-screen">
+    <img src="/assets/ajax-loader.gif">
+</div>
+<div class="chat-conversation">
+    <div class="chat-message" ng-repeat="message in messages" finish-render="adjustScroll()">
+        <div class="title">
+            <a href ui-sref="user({ id: message.user.id })">{{ message.user.name }}</a>
+            <span>at {{ message.sent_at | date: returnDateFilter(message.sent_at) }}:</span>
+        </div>
+        <div ng-bind-html="message.body | linky">
+            {{ message.body }}
+        </div>
+    </div>
+</div>

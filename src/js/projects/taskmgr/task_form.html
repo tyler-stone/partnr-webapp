@@ -1,0 +1,49 @@
+<div ng-show="loadComplete" class="content-container with-tabs clearfix">
+	<h2 ng-if="crudState === 'create'">New Task</h2>
+	<h2 ng-if="crudState === 'edit'">Edit Task</h2>
+	<form class="col-md-6" name="taskForm">
+		<fieldset ng-disabled="formLoading">
+			<div class="form-group">
+				<label for="taskName">name</label>
+				<input id="taskName" class="form-control" ng-model="task.title" required />
+			</div>
+			<div class="form-group">
+				<label for="taskDate">description (optional)</label>
+				<textarea ng-model="task.description" class="form-control"></textarea>
+			</div>
+			<div class="form-group" ng-if="milestones.length > 0">
+				<label for="taskMilestone">milestone (optional)</label>
+				<select class="form-control" ng-model="task.milestone" ng-options="milestone.id as milestone.title for milestone in milestones">
+					<option value="">&nbsp;</option>
+				</select>
+			</div>
+			<div class="form-group" ng-if="users.length > 0">
+				<label for="taskUser">user (optional)</label>
+				<select class="form-control" ng-model="task.user" ng-options="user.id as user.name for user in users">
+					<option value="">&nbsp;</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="categories">categories (optional)</label>
+				<button class="btn btn-primary" ng-click="selectCategories()">Select Categories...</button>
+				<skill-category-editor categories="task.categories" skills="task.skills"></skill-category-editor>
+				<div ng-hide="task.categories && task.categories.length > 0" class="text-center">
+					<span class="opaque-message">No categories selected.</h5>
+				</div>
+			</div>
+			<div ng-if="crudState === 'create'">
+				<button class="btn btn-default" ng-click="reset()">Reset</button>
+				<button class="btn btn-primary" ng-click="createTask()" ng-disabled="taskForm.$invalid">Create</button>
+			</div>
+			<div ng-if="crudState === 'edit'">
+				<button class="btn btn-primary" ng-click="saveTask()" ng-disabled="taskForm.$invalid">Save</button>
+				<button class="btn btn-danger" ng-click="delete()">Delete</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div ng-hide="loadComplete" class="content-container with-tabs">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<toasts></toasts>
+<div class="content-container" ng-show="loadComplete">
+  <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+  <h2>{{ user.profile.location.geo_string }}</h2>
+
+  <h3 class="inline">Schools</h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="school in user.profile.school_infos track by $index">
+      <div class="internal-container">
+        <h4>{{ school.school_name }}</h4>
+        <label for="grad_year">Class of</label>
+        <span>{{ school.grad_year }}</span><br/>
+        <label for="major">Major</label>
+        <span>{{ school.field }}</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="inline">Positions</h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="position in user.profile.positions track by $index">
+      <div class="internal-container">
+        <h4>{{ position.title }}</h4>
+        <span>{{ position.company }}</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="inline">Interests</h3>
+  <div class="clearfix">
+    <div class="col-md-3" ng-repeat="interest in user.profile.interests track by $index">
+      <div class="internal-container">
+        <h4>{{ interest.title }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="inline">Projects</h3>
+  <div class="clearfix">
+    <div ng-repeat="project in user.projects">
+      <a ng-click="$state.go('project', { project_id: project.id })">{{ project.title }}</a>
+    </div>
+  </div>
+</div>
+<div ng-hide="loadComplete" class="content-container">
+  <div class="text-center loading">
+    <img src="/assets/ajax-loader.gif">
+  </div>
+</div>
